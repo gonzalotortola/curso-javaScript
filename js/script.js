@@ -32,7 +32,7 @@ let entradaStock1 = prompt("Ingrese el stock del producto #1:");
 let producto1 = new Producto(entradaNombre1, entradaCategoria1, entradaPrecio1, entradaCodigo1, entradaStock1);
 
 productosNuevos.push(producto1);
-console.log(productosNuevos.concat(listaVieja))
+console.log(productosNuevos.concat(listaVieja));
 
 // Producto 2
 alert("Ingrese los datos de su nuevo producto #2.")
@@ -46,7 +46,7 @@ let entradaStock2 = prompt("Ingrese el stock del producto #2:");
 let producto2 = new Producto(entradaNombre2, entradaCategoria2, entradaPrecio2, entradaCodigo2, entradaStock2);
 
 productosNuevos.push(producto2);
-console.log(productosNuevos.concat(listaVieja))
+console.log(productosNuevos.concat(listaVieja));
 
 // Producto 3
 alert("Ingrese los datos de su nuevo producto #3.")
@@ -60,4 +60,4 @@ let entradaStock3 = prompt("Ingrese el stock del producto #3:");
 let producto3 = new Producto(entradaNombre3, entradaCategoria3, entradaPrecio3, entradaCodigo3, entradaStock3);
 
 productosNuevos.push(producto3);
-console.log(productosNuevos.concat(listaVieja))
+console.log(productosNuevos.concat(listaVieja));
