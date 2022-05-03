@@ -36,6 +36,21 @@ let producto3 = new Producto("Perfume Red Seduction", 4, "1780", "P-01", 20);
 
 productosExistentes = [producto1, producto2, producto3];
 
+// ESCRIBIR EN HTML LOS PRODUCTOS EXISTENTES
+let divProductosExistentes = document.getElementById("productosExistentes")
+productosExistentes.forEach(productoEnArray => {
+    divProductosExistentes.innerHTML += `
+    <div class="productosExistentes">
+        <p>Nombre: <strong>${productoEnArray.nombre}</strong></p>
+        <p>Categoría: <strong>${productoEnArray.categoria}</strong></p>
+        <p>Precio: <strong>$${productoEnArray.precio.toFixed(2)}</strong></p>
+        <p>Código: <strong>${productoEnArray.codigo}</strong></p>
+        <p>Stock: <strong>${productoEnArray.stock}</strong></p>
+        <br>
+    </div>
+    `
+})
+
 productosIngresados = [];
 
 continua = true
@@ -57,25 +72,43 @@ nuevaListaDeProductos = productosExistentes.concat(productosIngresados);
 
 console.log(nuevaListaDeProductos);
 
+// ESCRIBIR EN HTML LOS NUEVOS PRODUCTOS
+let divProductosIngresados = document.getElementById("productosIngresados")
 for (let producto of productosIngresados) {
-    alert("PRODUCTO AÑADIDO >");
-    alert("Nombre: "+ producto.nombre +"\nCategoría: "+ producto.categoria +"\nPrecio: $"+ producto.precio +"\nPrecio (con IVA incluido): $"+ (producto.sumarIVA()).toFixed(2) +"\nPrecio sugerido para la venta: $"+ producto.precioSugerido().toFixed(2) +"\nCódigo: "+ producto.codigo +"\nStock: "+ producto.stock +"");
-};
-
-for (let producto of productosExistentes) {
-    alert("PRODUCTO EXISTENTE >");
-    alert("Nombre: "+ producto.nombre +"\nCategoría: "+ producto.categoria +"\nPrecio: $"+ producto.precio +"\nPrecio (con IVA incluido): $"+ (producto.sumarIVA()).toFixed(2) +"\nPrecio sugerido para la venta: $"+ producto.precioSugerido().toFixed(2) +"\nCódigo: "+ producto.codigo +"\nStock: "+ producto.stock +"");
+    divProductosIngresados.innerHTML += `
+    <div class="productosIngresados">
+        <p>Nombre: <strong>${producto.nombre}</strong></p>
+        <p>Categoría: <strong>${producto.categoria}</strong></p>
+        <p>Precio: <strong>$${producto.precio.toFixed(2)}</strong></p>
+        <p>Precio <em>con IVA incluido:</em> <strong>$${(producto.sumarIVA()).toFixed(2)}</strong></p>
+        <p>Precio sugerido: <strong>$${(producto.precioSugerido()).toFixed(2)}</strong></p>
+        <p>Código: <strong>${producto.codigo}</strong></p>
+        <p>Stock: <strong>${producto.stock}</strong></p>
+        <br>
+    </div>
+    `
 };
 
 // ALERTA POCO STOCK
-
 let pocoStock = nuevaListaDeProductos.filter(producto => ((producto.stock <= 3) && (producto.stock > 0)));
 console.log("Productos con STOCK ESCASO: ");
 console.log(pocoStock);
 
+// EN HTML
+let divPocoStock = document.getElementById("pocoStock")
 for (let producto of pocoStock) {
-    alert("Productos con stock escaso (menos de 3 unidades):");
-    alert("PRODUCTOS CON STOCK ESCASO:\n\nNombre: "+ producto.nombre +"\nCategoría: "+ producto.categoria +"\nCódigo: "+ producto.codigo +"\nStock: "+ producto.stock +"");
+    divPocoStock.innerHTML += `
+    <div class="pocoStock">
+        <p>Nombre: <strong>${producto.nombre}</strong></p>
+        <p>Categoría: <strong>${producto.categoria}</strong></p>
+        <p>Precio: <strong>$${producto.precio.toFixed(2)}</strong></p>
+        <p>Precio <em>con IVA incluido:</em> <strong>$${(producto.sumarIVA()).toFixed(2)}</strong></p>
+        <p>Precio sugerido: <strong>$${(producto.precioSugerido()).toFixed(2)}</strong></p>
+        <p>Código: <strong>${producto.codigo}</strong></p>
+        <p>Stock: <strong>${producto.stock}</strong></p>
+        <br>
+    </div>
+    `
 };
 
 // ALERTA SIN STOCK
@@ -84,9 +117,21 @@ let sinStock = nuevaListaDeProductos.filter(producto => producto.stock == 0 || p
 console.log("Productos sin stock:");
 console.log(sinStock);
 
+// EN HTML
+let divSinStock = document.getElementById("sinStock")
 for (let producto of sinStock) {
-    alert("Productos sin stock / sin disponibilidad:");
-    alert("Productos sin stock\n\nNombre: "+ producto.nombre +"\nCategoría: "+ producto.categoria +"\nCódigo: "+ producto.codigo +"");
+    divSinStock.innerHTML += `
+    <div class="sinStock">
+        <p>Nombre: <strong>${producto.nombre}</strong></p>
+        <p>Categoría: <strong>${producto.categoria}</strong></p>
+        <p>Precio: <strong>$${producto.precio.toFixed(2)}</strong></p>
+        <p>Precio <em>con IVA incluido:</em> <strong>$${(producto.sumarIVA()).toFixed(2)}</strong></p>
+        <p>Precio sugerido: <strong>$${(producto.precioSugerido()).toFixed(2)}</strong></p>
+        <p>Código: <strong>${producto.codigo}</strong></p>
+        <p>Stock: <strong>${producto.stock}</strong></p>
+        <br>
+    </div>
+    `
 };
 
 // BÚSQUEDA DE PRODUCTOS
@@ -95,8 +140,22 @@ let busqueda = prompt("Ingrese el producto que desee buscar:");
 let resultadoBusqueda = nuevaListaDeProductos.filter((producto) => producto.nombre.includes(busqueda));
 console.log("Resultado de búsqueda:")
 console.log(resultadoBusqueda);
+
+// EN HTML
+let divBusqueda = document.getElementById("busquedaDeProductos")
 for (let producto of resultadoBusqueda) {
-    alert("Resultado de búsqueda:\n\nNombre: "+ producto.nombre +"\nCategoría: "+ producto.categoria +"\nPrecio: $"+ producto.precio +"\nPrecio (con IVA incluido): $"+ (producto.sumarIVA()).toFixed(2) +"\nPrecio sugerido para la venta: $"+ producto.precioSugerido().toFixed(2) +"\nCódigo: "+ producto.codigo +"\nStock: "+ producto.stock +"");
+    divBusqueda.innerHTML += `
+    <div class="busquedaDeProductos">
+        <p>Nombre: <strong>${producto.nombre}</strong></p>
+        <p>Categoría: <strong>${producto.categoria}</strong></p>
+        <p>Precio: <strong>$${producto.precio.toFixed(2)}</strong></p>
+        <p>Precio <em>con IVA incluido:</em> <strong>$${(producto.sumarIVA()).toFixed(2)}</strong></p>
+        <p>Precio sugerido: <strong>$${(producto.precioSugerido()).toFixed(2)}</strong></p>
+        <p>Código: <strong>${producto.codigo}</strong></p>
+        <p>Stock: <strong>${producto.stock}</strong></p>
+        <br>
+    </div>
+    `
 };
 
 // ORDENAR POR CANTIDAD STOCK
@@ -106,11 +165,45 @@ ordenStockMenorAMayor.sort((a, b) => a.stock - b.stock);
 console.log('Ordenados por stock: de menor a mayor: ');
 console.log(ordenStockMenorAMayor);
 
+// EN HTML
+let divStockMenorAMayor = document.getElementById("stockMenorAMayor")
+for (let producto of ordenStockMenorAMayor) {
+    divStockMenorAMayor.innerHTML += `
+    <div class="stockMenorAMayor">
+        <p>Nombre: <strong>${producto.nombre}</strong></p>
+        <p>Categoría: <strong>${producto.categoria}</strong></p>
+        <p>Precio: <strong>$${producto.precio.toFixed(2)}</strong></p>
+        <p>Precio <em>con IVA incluido:</em> <strong>$${(producto.sumarIVA()).toFixed(2)}</strong></p>
+        <p>Precio sugerido: <strong>$${(producto.precioSugerido()).toFixed(2)}</strong></p>
+        <p>Código: <strong>${producto.codigo}</strong></p>
+        <p>Stock: <strong>${producto.stock}</strong></p>
+        <br>
+    </div>
+    `
+};
+
 // MAYOR A MENOR
 let ordenStockMayorAMenor = nuevaListaDeProductos;
 ordenStockMayorAMenor.sort((a, b) => b.stock - a.stock);
 console.log('Ordenados por stock: de mayor a menor: ');
 console.log(ordenStockMayorAMenor);
+
+// EN HTML
+let divStockMayorAMenor = document.getElementById("stockMayorAMenor")
+for (let producto of ordenStockMayorAMenor) {
+    divStockMayorAMenor.innerHTML += `
+    <div class="stockMayorAMenor">
+        <p>Nombre: <strong>${producto.nombre}</strong></p>
+        <p>Categoría: <strong>${producto.categoria}</strong></p>
+        <p>Precio: <strong>$${producto.precio.toFixed(2)}</strong></p>
+        <p>Precio <em>con IVA incluido:</em> <strong>$${(producto.sumarIVA()).toFixed(2)}</strong></p>
+        <p>Precio sugerido: <strong>$${(producto.precioSugerido()).toFixed(2)}</strong></p>
+        <p>Código: <strong>${producto.codigo}</strong></p>
+        <p>Stock: <strong>${producto.stock}</strong></p>
+        <br>
+    </div>
+    `
+};
 
 // ORDENAR POR PRECIO
 // MENOR A MAYOR
@@ -119,8 +212,42 @@ ordenPrecioMenorAMayor.sort((a, b) => a.precio - b.precio);
 console.log('Ordenados por precio: de menor a mayor: ');
 console.log(ordenPrecioMenorAMayor);
 
+// EN HTML
+let divPrecioMenorAMayor = document.getElementById("precioMenorAMayor")
+for (let producto of ordenPrecioMenorAMayor) {
+    divPrecioMenorAMayor.innerHTML += `
+    <div class="precioMenorAMayor">
+        <p>Nombre: <strong>${producto.nombre}</strong></p>
+        <p>Categoría: <strong>${producto.categoria}</strong></p>
+        <p>Precio: <strong>$${producto.precio.toFixed(2)}</strong></p>
+        <p>Precio <em>con IVA incluido:</em> <strong>$${(producto.sumarIVA()).toFixed(2)}</strong></p>
+        <p>Precio sugerido: <strong>$${(producto.precioSugerido()).toFixed(2)}</strong></p>
+        <p>Código: <strong>${producto.codigo}</strong></p>
+        <p>Stock: <strong>${producto.stock}</strong></p>
+        <br>
+    </div>
+    `
+};
+
 // MAYOR A MENOR
 let ordenPrecioMayorAMenor = nuevaListaDeProductos;
 ordenPrecioMayorAMenor.sort((a, b) => b.precio - a.precio);
 console.log('Ordenados por precio: de mayor a menor: ');
 console.log(ordenPrecioMayorAMenor);
+
+// EN HTML
+let divPrecioMayorAMenor = document.getElementById("precioMayorAMenor")
+for (let producto of ordenPrecioMayorAMenor) {
+    divPrecioMayorAMenor.innerHTML += `
+    <div class="precioMayorAMenor">
+        <p>Nombre: <strong>${producto.nombre}</strong></p>
+        <p>Categoría: <strong>${producto.categoria}</strong></p>
+        <p>Precio: <strong>$${producto.precio.toFixed(2)}</strong></p>
+        <p>Precio <em>con IVA incluido:</em> <strong>$${(producto.sumarIVA()).toFixed(2)}</strong></p>
+        <p>Precio sugerido: <strong>$${(producto.precioSugerido()).toFixed(2)}</strong></p>
+        <p>Código: <strong>${producto.codigo}</strong></p>
+        <p>Stock: <strong>${producto.stock}</strong></p>
+        <br>
+    </div>
+    `
+};
